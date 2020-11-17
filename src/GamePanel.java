@@ -17,10 +17,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     Font titleFont = new Font("Arial", Font.PLAIN, 48);
     Font titleFont2 = new Font("Arial", Font.PLAIN, 16);
     Timer frameDraw;
-    Rocketship rocket;
+    Rocketship rocket = new Rocketship(225, 650, 25, 25); 
     public GamePanel() {
 		frameDraw = new Timer(1000/60,this);
 	    frameDraw.start();
+	    
 	}
     public void updateMenuState() {
     	
@@ -44,8 +45,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     	g.drawString("Press ESC for instructions.", 135, 450);
     }
     public void drawGameState(Graphics g) {
-    	Rocketship rocket = new Rocketship(250, 700, 50, 50);
-    	
+    	g.setColor(Color.BLACK);
+    	g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+    	rocket.draw(g);
     }
     public void drawEndState(Graphics g) {
     	g.setColor(Color.RED);
@@ -80,9 +82,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		}else if(currentState == END){
 		    updateEndState();
 		}
-		System.out.println("action");
 		repaint();
 	}
+	boolean moves = true;
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -93,17 +95,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		        currentState++;
 		    }
 		}
-		if (e.getKeyCode()==KeyEvent.VK_UP) {
-		    System.out.println("UP");
+		if (moves == true && e.getKeyCode()==KeyEvent.VK_UP && rocket.x < 500){
+			rocket.up();
 		}
-		if (e.getKeyCode()==KeyEvent.VK_DOWN) {
-		    System.out.println("DOWN");
+		if (moves == true && e.getKeyCode()==KeyEvent.VK_DOWN && rocket.x > 5){
+		    rocket.down();
 		}
-		if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-		    System.out.println("LEFT");
+		if (moves == true && e.getKeyCode()==KeyEvent.VK_LEFT && rocket.y > 1){
+		    rocket.left();
 		}
-		if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
-		    System.out.println("RIGHT");
+		if (moves == true && e.getKeyCode()==KeyEvent.VK_RIGHT && rocket.x < 500){
+		    rocket.right();
 		}
 	}
 	@Override
