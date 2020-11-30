@@ -8,6 +8,11 @@ public class ObjectManager implements ActionListener {
 	Rocketship rocket;
 	ArrayList<Projectile> projectiles;
 	ArrayList<Alien> aliens;
+	public static int score = 0;
+	
+public int getScore() {
+	return score;
+}
 
 public ObjectManager(Rocketship rocket) {
 	this.rocket = rocket;
@@ -36,6 +41,8 @@ public void update() {
 			allProjectiles.isActive(false);
 		}
 	}
+	checkCollision();
+	purgeObjects();
 }
 public void draw(Graphics g) {
 	rocket.draw(g);
@@ -66,5 +73,20 @@ public void purgeObjects() {
 public void actionPerformed(ActionEvent arg0) {
 	// TODO Auto-generated method stub
 	addAlien();
+}
+public void checkCollision() {
+	for (int i = 0; i < aliens.size(); i++) {
+		if (rocket.collisionBox.intersects(aliens.get(i).collisionBox)) {
+			aliens.get(i).isActive(false);
+			rocket.isActive(false);
+		}
+		for (int j = 0; j < projectiles.size(); j++) {
+			if (aliens.get(i).collisionBox.intersects(projectiles.get(j).collisionBox)) {
+				projectiles.get(j).isActive(false);
+				aliens.get(i).isActive(false);
+				score+= 1;
+			}
+		}
+	}
 }
 }

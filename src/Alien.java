@@ -4,12 +4,13 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-public class Alien extends GameObject {
+public class Alien extends GameObject{
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
 	public void update() {
 		y+=speed;
+		super.update();
 	}
 	public void draw(Graphics g) {
 		if (gotImage) {
@@ -23,6 +24,18 @@ public class Alien extends GameObject {
 		speed = 1;
 		if (needImage) {
 		    loadImage ("alien.png");
+		}
+		if (ObjectManager.score == 5) {
+			speed++;
+		}
+		if (ObjectManager.score == 10) {
+			speed++;
+		}
+		if (ObjectManager.score == 15) {
+			speed++;
+		}
+		if (ObjectManager.score == 20) {
+			speed++;
 		}
 	}
 	public void isActive(boolean b) {

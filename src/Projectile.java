@@ -10,10 +10,11 @@ public class Projectile extends GameObject{
 	public static boolean gotImage = false;	
 	public void update() {
 		y-=speed;
+		super.update();
 	}
 	public void draw(Graphics g) {
 		if (gotImage) {
-			g.drawImage(image, x, y, width, height, null);
+			g.drawImage(image, x, y, 25, 25, null);
 		}
 	}
 	

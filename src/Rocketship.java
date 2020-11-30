@@ -68,4 +68,8 @@ public class Rocketship extends GameObject {
 		}
 		super.update();
 	}
+	public void isActive(boolean b) {
+		// TODO Auto-generated method stub
+		this.isActive = b;
+	}
 }

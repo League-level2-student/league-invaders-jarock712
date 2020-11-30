@@ -20,9 +20,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     int currentState = MENU;
     Font titleFont = new Font("Arial", Font.PLAIN, 48);
     Font titleFont2 = new Font("Arial", Font.PLAIN, 16);
+    Font font1 = new Font("Quicksand", Font.BOLD, 24);
     Timer frameDraw;
     Timer alienSpawn;
-    Rocketship rocket = new Rocketship(225, 650, 25, 25);
+    Rocketship rocket = new Rocketship(225, 650, 50, 50);
     ObjectManager manager = new ObjectManager(rocket);
     public GamePanel() {
 		frameDraw = new Timer(1000/60,this);
@@ -34,6 +35,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     public void updateGameState() {
     	rocket.update();
     	manager.update();
+    	if (rocket.isActive == false) {
+			currentState = END;
+		}
     }
     public void updateEndState() {
     	
@@ -56,6 +60,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		}
     	g.drawImage(image, 0, 0, null);
     	manager.draw(g);
+    	manager.getScore();
+    	g.setColor(Color.GREEN);
+    	g.setFont(font1);
+    	g.drawString("Score: " + manager.getScore(), 35, 35);
     }
     public void drawEndState(Graphics g) {
     	g.setColor(Color.RED);
