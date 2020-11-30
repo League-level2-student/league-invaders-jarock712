@@ -63,7 +63,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     	manager.getScore();
     	g.setColor(Color.GREEN);
     	g.setFont(font1);
-    	g.drawString("Score: " + manager.getScore(), 35, 35);
+    	g.drawString("Score: " + manager.getScore(), 15, 35);
+    	g.setColor(Color.GREEN);
+    	g.setFont(font1);
+    	g.drawString("Level: " + GameObject.getLevel(), 375, 35);
     }
     public void drawEndState(Graphics g) {
     	g.setColor(Color.RED);

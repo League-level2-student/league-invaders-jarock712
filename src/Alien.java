@@ -26,16 +26,16 @@ public class Alien extends GameObject{
 		    loadImage ("alien.png");
 		}
 		if (ObjectManager.score == 5) {
-			speed++;
+			speed = 3;
 		}
 		if (ObjectManager.score == 10) {
-			speed++;
+			speed = 6;
 		}
 		if (ObjectManager.score == 15) {
-			speed++;
+			speed = 9;
 		}
 		if (ObjectManager.score == 20) {
-			speed++;
+			speed = 12;
 		}
 	}
 	public void isActive(boolean b) {
